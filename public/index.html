@@ -209,7 +209,9 @@
         <div class="mb-8">
             <div class="flex items-center justify-between">
                 <div>
-                    <h2 class="text-3xl font-bold">Welcome back, Alex!</h2>
+                    <h2 id="welcome" class="text-2xl font-bold text-gray-800">
+  Welcome back!
+</h2>
                     <p class="text-muted-foreground mt-1">Here's your learning progress and upcoming sessions</p>
                 </div>
                 <div class="hidden md:block">
@@ -901,5 +903,31 @@
             </div>
         </div>
     </main>
+    <script>
+  (async () => {
+    // 1️⃣ Get the saved email from login
+    const email = localStorage.getItem("sc_email");
+    if (!email) {
+      // If they’re not logged in, send them back to login
+      window.location.assign("/login.html");
+      return;
+    }
+
+    // 2️⃣ Call your backend to get the user's profile
+    try {
+      const res = await fetch(`/api/user?email=${encodeURIComponent(email)}`);
+      if (!res.ok) throw new Error("User not found");
+
+      const user = await res.json();
+
+      // 3️⃣ Update the greeting text
+      const name = user.full_name ? user.full_name : email;
+      document.getElementById("welcome").textContent = `Welcome back, ${name}!`;
+    } catch (err) {
+      console.error("Error loading user:", err);
+      document.getElementById("welcome").textContent = "Welcome back!";
+    }
+  })();
+</script>
 </body>
 </html>

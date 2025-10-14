@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Your Info – Student Success Center</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-gray-50 flex items-center justify-center">
+  <div class="bg-white shadow rounded-lg p-6 w-full max-w-md">
+    <h1 class="text-2xl font-bold mb-2">Tell us your name</h1>
+    <p class="text-sm text-gray-600 mb-4" id="greet">Loading…</p>
+
+    <form id="name-form" class="space-y-3">
+      <div>
+        <label for="full_name" class="block text-sm font-medium text-gray-700">Full name</label>
+        <input id="full_name" class="mt-1 w-full border border-gray-300 rounded-md p-2" placeholder="e.g., Alex Johnson" required />
+      </div>
+      <button class="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700">Save</button>
+      <p id="status" class="text-sm text-gray-600 min-h-[1.25rem]"></p>
+    </form>
+
+    <div class="mt-4 text-center">
+      <button id="skip" class="text-indigo-600 underline text-sm">Skip for now</button>
+    </div>
+  </div>
+
+  <script>
+    const email = localStorage.getItem("sc_email");
+    const greet = document.getElementById("greet");
+    const form = document.getElementById("name-form");
+    const statusEl = document.getElementById("status");
+    const fullNameInput = document.getElementById("full_name");
+    const skipBtn = document.getElementById("skip");
+
+    if (!email) {
+      // No logged-in email—go back to login
+      window.location.assign("/login.html");
+    }
+
+    // Load existing name if we have one
+    (async () => {
+      try {
+        const r = await fetch(`/api/user?email=${encodeURIComponent(email)}`);
+        if (r.ok) {
+          const u = await r.json();
+          greet.textContent = u.full_name ? `Hi ${u.full_name}!` : `Hi ${email}, let's save your name.`;
+          if (u.full_name) fullNameInput.value = u.full_name;
+        } else {
+          greet.textContent = `Welcome, ${email}.`;
+        }
+      } catch {
+        greet.textContent = `Welcome, ${email}.`;
+      }
+    })();
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      statusEl.textContent = "Saving…";
+      try {
+        const r = await fetch("/api/user/name", {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, full_name: fullNameInput.value.trim() })
+        });
+        if (r.ok) {
+          statusEl.textContent = "Saved! Redirecting…";
+          setTimeout(() => window.location.assign("/index.html"), 800);
+        } else {
+          const data = await r.json().catch(() => ({}));
+          statusEl.textContent = data.error || "Could not save name.";
+        }
+      } catch {
+        statusEl.textContent = "Network error.";
+      }
+    });
+
+    skipBtn.addEventListener("click", () => {
+      window.location.assign("/index.html");
+    });
+  </script>
+</body>
+</html>

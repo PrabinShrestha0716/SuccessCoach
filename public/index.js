@@ -74,7 +74,8 @@ form.addEventListener('submit', async (e) => {
 
     if (res.ok) {
       statusEl.textContent = 'Success! Redirecting…';
-      window.location.assign('/index.html'); // ✅ go to your app home
+      localStorage.setItem("sc_email", payload.email);
+      window.location.assign("/info.html");
       return;
     }
 
