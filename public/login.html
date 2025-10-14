@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Student Success Center · Sign in</title>
+  <meta name="description" content="Sign in to the Student Success Center to track progress, book tutoring, and access resources." />
+  <meta name="color-scheme" content="light dark" />
+  <!-- (Optional) CSRF token populated by your backend framework -->
+  <meta name="csrf-token" content="" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            background: 'var(--background)',
+            foreground: 'var(--foreground)',
+            card: 'var(--card)',
+            'card-foreground': 'var(--card-foreground)',
+            popover: 'var(--popover)',
+            'popover-foreground': 'var(--popover-foreground)',
+            primary: 'var(--primary)',
+            'primary-foreground': 'var(--primary-foreground)',
+            secondary: 'var(--secondary)',
+            'secondary-foreground': 'var(--secondary-foreground)',
+            muted: 'var(--muted)',
+            'muted-foreground': 'var(--muted-foreground)',
+            accent: 'var(--accent)',
+            'accent-foreground': 'var(--accent-foreground)',
+            destructive: 'var(--destructive)',
+            'destructive-foreground': 'var(--destructive-foreground)',
+            border: 'var(--border)',
+            input: 'var(--input)',
+            'input-background': 'var(--input-background)',
+            ring: 'var(--ring)'
+          },
+          borderRadius: {
+            lg: 'var(--radius)',
+            md: 'calc(var(--radius) - 2px)',
+            sm: 'calc(var(--radius) - 4px)'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    :root {
+      --font-size: 16px;
+      --background: #ffffff;
+      --foreground: oklch(0.145 0 0);
+      --card: #ffffff;
+      --card-foreground: oklch(0.145 0 0);
+      --popover: oklch(1 0 0);
+      --popover-foreground: oklch(0.145 0 0);
+      --primary: #030213;
+      --primary-foreground: oklch(1 0 0);
+      --secondary: oklch(0.95 0.0058 264.53);
+      --secondary-foreground: #030213;
+      --muted: #ececf0;
+      --muted-foreground: #717182;
+      --accent: #e9ebef;
+      --accent-foreground: #030213;
+      --destructive: #d4183d;
+      --destructive-foreground: #ffffff;
+      --border: rgba(0, 0, 0, 0.1);
+      --input: transparent;
+      --input-background: #f3f3f5;
+      --switch-background: #cbced4;
+      --font-weight-medium: 500;
+      --font-weight-normal: 400;
+      --ring: oklch(0.708 0 0);
+      --radius: 0.625rem;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --background: oklch(0.19 0 0);
+        --foreground: oklch(0.94 0 0);
+        --card: oklch(0.21 0 0);
+        --card-foreground: oklch(0.98 0 0);
+        --muted: oklch(0.26 0 0);
+        --muted-foreground: oklch(0.75 0 0);
+        --accent: oklch(0.26 0 0);
+        --border: oklch(0.32 0 0 / 0.5);
+        --input-background: oklch(0.24 0 0);
+      }
+    }
+
+    body { background: var(--background); color: var(--foreground); font-size: var(--font-size); }
+    .btn-primary { background: var(--primary); color: var(--primary-foreground); }
+    .btn-primary:hover { opacity: .92; }
+    .btn-outline { border: 1px solid var(--border); background: transparent; color: var(--foreground); }
+    .btn-outline:hover { background: var(--accent); }
+    .btn-link { color: var(--primary); text-decoration: underline; }
+    .input-field { background: var(--input-background); border: 1px solid var(--border); border-radius: calc(var(--radius) - 2px); padding: .5rem .75rem; width: 100%; }
+    .input-field:focus { outline: 2px solid var(--ring); outline-offset: 2px; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: 0 1px 3px 0 rgb(0 0 0 / .1), 0 1px 2px -1px rgb(0 0 0 / .1); }
+  </style>
+</head>
+<body class="min-h-screen bg-background">
+  <a href="#content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:bg-accent focus:px-3 focus:py-2 focus:rounded-md">Skip to content</a>
+
+  <main id="content" class="min-h-screen bg-background flex items-center justify-center p-4">
+    <div class="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+      <!-- Left panel: branding -->
+      <section aria-label="Branding" class="hidden lg:flex flex-col justify-center space-y-8">
+        <div class="space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="p-3 bg-primary rounded-xl" aria-hidden="true">
+              <!-- Graduation icon -->
+              <svg class="h-8 w-8 text-primary-foreground" viewBox="0 0 24 24" fill="none" stroke="currentColor" role="img" aria-label="Graduation cap icon">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 20v-7.5l4-2.222"/>
+              </svg>
+            </div>
+            <div>
+              <h1 class="text-3xl font-bold">Student Success Center</h1>
+              <p class="text-muted-foreground">Your learning journey starts here</p>
+            </div>
+          </div>
+
+          <div class="space-y-4 pt-8">
+            <h2 class="text-2xl font-semibold">Welcome back!</h2>
+            <p class="text-lg text-muted-foreground">Access your personalized dashboard to track your academic progress, schedule tutoring sessions, and connect with your instructors.</p>
+
+            <dl class="grid grid-cols-2 gap-4 pt-4">
+              <div class="space-y-2">
+                <div class="flex items-center gap-2">
+                  <span class="w-2 h-2 bg-primary rounded-full" aria-hidden="true"></span>
+                  <dt class="text-sm font-medium">Track Your Progress</dt>
+                </div>
+                <dd class="text-sm text-muted-foreground pl-4">Monitor your GPA, assignments, and study streaks</dd>
+              </div>
+              <div class="space-y-2">
+                <div class="flex items-center gap-2">
+                  <span class="w-2 h-2 bg-primary rounded-full" aria-hidden="true"></span>
+                  <dt class="text-sm font-medium">Schedule Sessions</dt>
+                </div>
+                <dd class="text-sm text-muted-foreground pl-4">Book tutoring sessions with expert instructors</dd>
+              </div>
+              <div class="space-y-2">
+                <div class="flex items-center gap-2">
+                  <span class="w-2 h-2 bg-primary rounded-full" aria-hidden="true"></span>
+                  <dt class="text-sm font-medium">Access Resources</dt>
+                </div>
+                <dd class="text-sm text-muted-foreground pl-4">Download study materials and course content</dd>
+              </div>
+              <div class="space-y-2">
+                <div class="flex items-center gap-2">
+                  <span class="w-2 h-2 bg-primary rounded-full" aria-hidden="true"></span>
+                  <dt class="text-sm font-medium">Stay Connected</dt>
+                </div>
+                <dd class="text-sm text-muted-foreground pl-4">Communicate with tutors and join study groups</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+
+        <figure class="relative" aria-hidden="true">
+          <img src="https://images.unsplash.com/photo-1722248540590-ba8b7af1d7b2?auto=format&fit=crop&w=1080&q=80" alt="Students studying in a library" class="rounded-xl object-cover w-full h-80"/>
+          <div class="absolute inset-0 bg-primary/10 rounded-xl"></div>
+        </figure>
+      </section>
+
+      <!-- Right panel: form -->
+      <section aria-label="Sign in form" class="flex justify-center">
+        <div class="card w-full max-w-md p-6">
+          <div class="space-y-2 text-center mb-6">
+            <div class="flex justify-center lg:hidden mb-4" aria-hidden="true">
+              <div class="flex items-center gap-2">
+                <div class="p-2 bg-primary rounded-lg">
+                  <svg class="h-6 w-6 text-primary-foreground" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 20v-7.5l4-2.222"/>
+                  </svg>
+                </div>
+                <span class="font-semibold text-lg">Student Success Center</span>
+              </div>
+            </div>
+            <h2 class="text-2xl font-semibold">Sign in to your account</h2>
+            <p class="text-muted-foreground">Enter your email and password to access your dashboard</p>
+          </div>
+
+          <form id="login-form" class="space-y-4 mb-6" novalidate>
+            <!-- honeypot -->
+            <input type="text" name="website" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+
+            <div class="space-y-2">
+              <label for="email" class="block text-sm font-medium">Email address</label>
+              <div class="relative">
+                <svg class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+                <input id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="alex.student@university.edu" class="input-field pl-10" required aria-describedby="email-error" />
+              </div>
+              <p id="email-error" class="text-sm text-destructive hidden">Please enter a valid email.</p>
+            </div>
+
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <label for="password" class="block text-sm font-medium">Password</label>
+                <a href="#" class="text-sm btn-link">Forgot password?</a>
+              </div>
+              <div class="relative">
+                <svg class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                  <circle cx="12" cy="16" r="1"/>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                </svg>
+                <input id="password" name="password" type="password" autocomplete="current-password" placeholder="Enter your password" class="input-field pl-10 pr-12" minlength="8" required aria-describedby="password-error" />
+                <button type="button" id="toggle-password" class="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground" aria-controls="password" aria-pressed="false" aria-label="Show password">
+                  <svg id="eye-icon" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                  </svg>
+                </button>
+              </div>
+              <p id="password-error" class="text-sm text-destructive hidden">Password must be at least 8 characters.</p>
+            </div>
+
+            <div class="flex items-center justify-between">
+              <label class="flex items-center gap-2 text-sm select-none">
+                <input type="checkbox" id="remember" name="remember" class="rounded border-gray-300" />
+                Remember me
+              </label>
+            </div>
+
+            <button type="submit" id="submit" class="btn-primary w-full py-2 px-4 rounded-md disabled:opacity-50 disabled:cursor-not-allowed">Sign in</button>
+
+            <div role="status" aria-live="polite" class="text-sm mt-2 min-h-[1.5rem]" id="form-status"></div>
+          </form>
+
+          <div class="space-y-4">
+            <div class="relative w-full">
+              <div class="absolute inset-0 flex items-center" aria-hidden="true">
+                <span class="w-full border-t border-border"></span>
+              </div>
+              <div class="relative flex justify-center text-xs uppercase">
+                <span class="bg-card px-2 text-muted-foreground">Or continue with</span>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 w-full">
+              <button type="button" class="btn-outline w-full py-2 px-4 rounded-md flex items-center justify-center" aria-label="Continue with Google">
+                <svg class="mr-2 h-4 w-4" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill="currentColor" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                  <path fill="currentColor" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                  <path fill="currentColor" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                  <path fill="currentColor" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                </svg>
+                Google
+              </button>
+              <button type="button" class="btn-outline w-full py-2 px-4 rounded-md flex items-center justify-center" aria-label="Continue with Microsoft">
+                <svg class="mr-2 h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M1 1h10v10H1V1zm12 0h10v10H13V1zM1 13h10v10H1V13zm12 0h10v10H13V13z"/>
+                </svg>
+                Microsoft
+              </button>
+            </div>
+
+            <p class="text-center text-sm">
+              <span class="text-muted-foreground">Don't have an account? </span>
+              <a class="btn-link text-sm" href="/register.html">Sign up for free</a>
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+  <script src="index.js"></script>
+</body>
+</html>
