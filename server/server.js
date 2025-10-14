@@ -31,6 +31,31 @@ app.get("/api/health", async (req, res) => {
     res.status(500).json({ ok: false, error: "DB not reachable" });
   }
 });
+// Get user profile by email (super simple for now)
+app.get("/api/user", async (req, res) => {
+  const { email } = req.query;
+  if (!email) return res.status(400).json({ error: "Email is required" });
+
+  const r = await pool.query(
+    "SELECT email, full_name, created_at FROM users WHERE email=$1",
+    [email]
+  );
+  if (r.rowCount === 0) return res.status(404).json({ error: "User not found" });
+  res.json(r.rows[0]);
+});
+
+// Update name by email
+app.put("/api/user/name", async (req, res) => {
+  const { email, full_name } = req.body || {};
+  if (!email || !full_name) return res.status(400).json({ error: "email and full_name required" });
+
+  const r = await pool.query(
+    "UPDATE users SET full_name=$1 WHERE email=$2 RETURNING email, full_name",
+    [full_name, email]
+  );
+  if (r.rowCount === 0) return res.status(404).json({ error: "User not found" });
+  res.json({ ok: true, user: r.rows[0] });
+});
 
 app.post("/api/register", async (req, res) => {
   const { email, password } = req.body || {};
