@@ -34,6 +34,19 @@ function showError(el, errorEl, condition, message) {
   }
 }
 
+// Handle "Open Library" button navigation (on homepage)
+const libraryBtn = document.getElementById('open-library');
+if (libraryBtn) {
+  libraryBtn.addEventListener('click', () => {
+    // optional: save the logged-in user's name/email
+    const email = localStorage.getItem('sc_email') || '';
+    console.log('Opening library for:', email);
+
+    // redirect to library page
+    window.location.href = "/library.html";
+  });
+}
+
 function validate() {
   const emailValid = emailInput.value.trim().length > 3 && emailInput.validity.valid;
   const pwdValid = passwordInput.value.trim().length >= 8;
@@ -96,3 +109,4 @@ form.addEventListener('submit', async (e) => {
     submitBtn.disabled = false;
   }
 });
+
